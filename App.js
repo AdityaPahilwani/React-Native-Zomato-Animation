@@ -1,12 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, View, FlatList } from "react-native";
+import { data } from "./DATA.js";
+import Card from "./components/card";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <FlatList
+        data={data}
+        contentContainerStyle={{
+          alignItems: "center",
+        }}
+        keyExtractor={(item) => item.key}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item, index }) => {
+          return (
+            <Card
+              image={item.image}
+              title={item.title}
+              description={item.description}
+            ></Card>
+          );
+        }}
+      />
     </View>
   );
 }
@@ -14,8 +30,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
